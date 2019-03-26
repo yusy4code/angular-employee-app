@@ -1,41 +1,23 @@
 <div class="form-class mt-5">
-  <h1 class="text-center">New Employee</h1>
+  <h1 class="text-center">Edit Employee</h1>
   <br />
   <form>
     <div class="form-group row">
       <label for="employeeName" class="col-sm-2 col-form-label">Name</label>
       <div class="col-sm-10">
-        <input
-          type="text"
-          id="employeeName"
-          class="form-control"
-          placeholder="Name"
-          [value]="employee.name"
-        />
+        <input type="text" id="employeeName" class="form-control" placeholder="Name" [value]="employee.name" />
       </div>
     </div>
     <div class="form-group row">
       <label for="Age" class="col-sm-2 col-form-label">Age</label>
       <div class="col-sm-10">
-        <input
-          type="number"
-          class="form-control"
-          id="age"
-          [value]="employee.age"
-          placeholder="Age"
-        />
+        <input type="number" class="form-control" id="age" [value]="employee.age" placeholder="Age" />
       </div>
     </div>
     <div class="form-group row">
       <label for="Email" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          placeholder="Email"
-          [value]="employee.email"
-        />
+        <input type="email" class="form-control" id="email" placeholder="Email" [value]="employee.email" />
       </div>
     </div>
     <div class="text-center">
