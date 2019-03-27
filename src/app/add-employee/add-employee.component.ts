@@ -12,5 +12,9 @@ export class AddEmployeeComponent implements OnInit {
   onCancel(): void {
     this.router.navigate(["/employees"]);
   }
+  onSubmit(): void {
+    alert("Functionality is not coded yet..!!!");
+    this.router.navigate(["/employees"]);
+  }
   ngOnInit() {}
 }

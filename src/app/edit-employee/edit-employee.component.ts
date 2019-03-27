@@ -18,8 +18,8 @@ export class EditEmployeeComponent implements OnInit {
     this.router.navigate(["/employees"]);
   }
   onSubmit(): void {
-    alert("Saved successfully...!!!");
-    this.router.navigate(["/welcome"]);
+    alert("Functionality is not coded yet...!!!");
+    this.router.navigate(["/employees"]);
   }
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get("id");
