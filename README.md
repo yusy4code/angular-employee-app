@@ -1,4 +1,4 @@
-# EmployeeApp
+# Employee Workout Tracker App
 
 This is my first Angular project. 
 
