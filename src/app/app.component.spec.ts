@@ -1,35 +1,76 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { TestBed, async, fakeAsync, tick } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AppComponent } from "./app.component";
+import { ListEmployeeComponent } from "./list-employee/list-employee.component";
+import { WelcomeComponent } from "./welcome/welcome.component";
+import { AddEmployeeComponent } from "./add-employee/add-employee.component";
+import { EditEmployeeComponent } from "./edit-employee/edit-employee.component";
 
-describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+import { Location } from "@angular/common";
+import { Routes, Router } from "@angular/router";
 
-  it('should create the app', () => {
+const routes: Routes = [
+  {
+    path: "employees/new",
+    component: AddEmployeeComponent
+  },
+  {
+    path: "employees/:id",
+    component: EditEmployeeComponent
+  },
+  {
+    path: "employees",
+    component: ListEmployeeComponent
+  },
+  {
+    path: "welcome",
+    component: WelcomeComponent
+  },
+  {
+    path: "",
+    redirectTo: "welcome",
+    pathMatch: "full"
+  }
+];
+
+fdescribe("Router: App testing", () => {
+  let location: Location;
+  let router: Router;
+  let fixture;
+
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule.withRoutes(routes)],
+        declarations: [
+          AppComponent,
+          ListEmployeeComponent,
+          WelcomeComponent,
+          AddEmployeeComponent,
+          EditEmployeeComponent
+        ]
+      }).compileComponents();
+
+      router = TestBed.get(Router);
+      location = TestBed.get(Location);
+
+      fixture = TestBed.createComponent(AppComponent);
+      router.initialNavigation();
+    })
+  );
+
+  it("should create the app", () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'employee-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('employee-app');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to employee-app!');
-  });
+  it(
+    'navigate to "" redirects you to /welcome',
+    fakeAsync(() => {
+      router.navigate([""]).then(() => {
+        expect(location.path()).toBe("/welcome");
+      });
+    })
+  );
 });
